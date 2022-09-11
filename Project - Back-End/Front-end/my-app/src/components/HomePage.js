@@ -8,6 +8,7 @@ function HomePage() {
   return (
     <div>
         HomePage
+        
         <button  onClick={handleLogout}>
 					Logout
 				</button>

@@ -38,7 +38,7 @@ export default function SignInSide() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:4002/api/auth";
+			const url = "http://localhost:4002/api/users/login";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
 			window.location = "/";

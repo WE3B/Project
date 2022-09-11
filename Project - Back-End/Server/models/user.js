@@ -21,11 +21,14 @@ const userSchema = new Schema(
     },
     {timestamps: true}
 );
-userSchema.method.generateAuthToken = function(){
-    const token = jwt.sign({_id: this._id},process.env.JWTPRIVATEKEY,{expiresIn:"7d"});
-    return token
+userSchema.methods.generateAuthToken = function(){
+    const token =  jwt.sign(
+        {_id: this._id},
+        process.env.JWTPRIVATEKEY,
+        {expiresIn:"7d"});
+    return token;
 };
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("user", userSchema);
 
 const validate = (data)=>{
     const schema = Joi.object({
@@ -35,4 +38,11 @@ const validate = (data)=>{
     });
     return schema.validate(data)
 }
-module.exports = {User,validate};
+const validateAuth = (data) => {
+	const schema = Joi.object({
+		email: Joi.string().email().required().label("Email"),
+		password: Joi.string().required().label("Password"),
+	});
+	return schema.validate(data);
+};
+module.exports = {User,validate,validateAuth};

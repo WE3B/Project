@@ -1,17 +1,13 @@
 import React from "react";
-
+import NavBar from './navBar';
+import Divider from '@mui/material/Divider';
 function HomePage() {
-  const handleLogout = () => {
-		localStorage.removeItem("token");
-		window.location.reload();
-	};
   return (
     <div>
-        HomePage
-        
-        <button  onClick={handleLogout}>
-					Logout
-				</button>
+      <>
+        <NavBar></NavBar>
+        <Divider/>
+      </>
     </div>
   );
 }
